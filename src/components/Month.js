@@ -1,9 +1,7 @@
 import Day from "./Day.js";
 import Weekday from "./Weekday.js";
-import Task from "./Task.js";
-import taskList from "./taskList.js";
 import { useEffect, useState } from "react";
-import getMonthString, { createYearData, checkIfWeekend } from "./functions.js";
+import getMonthString, { createYearData } from "./functions.js";
 
 export default function Month(props) {
   let year = props.date.getFullYear();
@@ -43,6 +41,7 @@ export default function Month(props) {
           weekend={weekend}
           current={current}
           taskData={props.taskData}
+          setSelectedDay={props.setSelectedDay}
           setTaskData={props.setTaskData}
         />
       );

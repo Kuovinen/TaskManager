@@ -1,4 +1,4 @@
-import Task from "./Task.js";
+import Task from "./CTask.js";
 import taskList from "./taskList.js";
 
 export default function Day(props) {
@@ -27,9 +27,21 @@ export default function Day(props) {
       />
     ));
   }
-
+  function assign() {
+    if (props.day && taskList[2022][props.month][props.day]) {
+      props.setSelectedDay({
+        day: props.day,
+        month: props.month,
+        tasks: taskList[2022][props.month][props.day],
+      });
+    }
+  }
   return (
-    <div className="day" style={{ background: background, border: border }}>
+    <div
+      className="day"
+      onClick={assign}
+      style={{ background: background, border: border }}
+    >
       <div
         className="date"
         style={props.day === null ? null : { background: "var(--cp-Darkest)" }}

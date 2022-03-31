@@ -170,9 +170,24 @@ form > button {
 
 .workspace {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 2fr 2fr;
   gap: 1vh;
 }
 .iDetails {
   resize: vertical;
+}
+.selectedDay {
+  border: 0.1rem solid var(--cp-lGrey);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.infoTask:hover {
+  background: var(--cp-lGrey25);
+}
+.infoDate {
+  color: var(--cp-lGrey);
+  font-weight: 700;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
