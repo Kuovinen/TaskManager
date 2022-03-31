@@ -4,11 +4,13 @@ export default function Input() {
   }
 
   return (
-    <form>
-      <input className="input" placeholder="Title"></input>
-      <input className="input" placeholder="Time"></input>
-      <textarea className="details" placeholder="Task details"></textarea>
-      <button onClick={saveData}>SAVE</button>
-    </form>
+    <div className="inputForm">
+      <form>
+        <input className="iInput" placeholder="TITLE"></input>
+        <input className="iInput" placeholder="TIME"></input>
+        <textarea className="iDetails" placeholder="DETAILS"></textarea>
+        <button onClick={saveData}>SAVE</button>
+      </form>
+    </div>
   );
 }

@@ -8,9 +8,12 @@ export default function TaskDataDisplay(props) {
 
   return (
     <div className="selectedTask">
-      <div className="selectedtTitle">{props.taskData.title}</div>
-      <div className="selectedtTime">{props.taskData.time}</div>
-      <div className="selectedtDetails">{props.taskData.details}</div>
+      <div className="info">
+        <div className="selectedtTitle">{props.taskData.title}</div>
+        <div className="selectedtTime">{props.taskData.time}</div>
+        <div className="selectedtDetails">{props.taskData.details}</div>
+      </div>
+
       <div className="taskButtons">
         <button className="tButton" onClick={editTask}>
           EDIT

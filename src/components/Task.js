@@ -8,7 +8,7 @@ export default function Task(props) {
   }
   return (
     <div className="cTask" onClick={showData}>
-      {props.title}
+      T
     </div>
   );
 }

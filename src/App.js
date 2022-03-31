@@ -9,8 +9,10 @@ function App() {
   return (
     <div className="App">
       <Month date={date} taskData={taskData} setTaskData={setTaskData} />
-      <TaskDataDisplay taskData={{ ...taskData }} />
-      <Input />
+      <div className="workspace">
+        <TaskDataDisplay taskData={{ ...taskData }} />
+        <Input />
+      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 :root {
   --cp-lGrey: rgb(158, 116, 157);
+  --cp-lGrey25: rgb(158, 116, 157, 0.25);
   --cp-dGrey: rgb(130, 79, 132);
   --cp-Black: rgb(72, 5, 59);
   --cp-Purple: rgb(238, 0, 255);
@@ -23,11 +24,11 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 10vh);
+  margin-bottom: 1vh;
   gap: 0.2rem;
 }
 .weekdays {
   grid-template-rows: repeat(1, 3vh);
-  margin-bottom: 1vh;
 }
 .weekday {
   border: 0.1rem solid var(--cp-Black);
@@ -86,17 +87,92 @@ form {
   display: flex;
   flex-direction: column;
 }
+.iInput,
+.iDetails {
+  outline: 0.1rem solid var(--cp-lGrey);
+  border: none;
+}
+.iInput:focus,
+.iDetails:focus {
+  background-color: var(--cp-lGrey25);
+}
+.iInput::placeholder,
+.iDetails::placeholder {
+  color: var(--cp-lGrey);
+}
+form > button {
+  background-color: var(--cp-lGrey);
+  border: none;
+  color: white;
+  cursor: pointer;
+  outline: 0.1rem solid var(--cp-lGrey);
+}
 .selectedTask {
   background-color: var(--cp-lGrey);
-}
-.dayTasks {
+  border-radius: 1vh;
   display: flex;
-  flex-direction: column;
+  justify-content: end;
 }
-.cTask {
-  color: blue;
+.selectedtTitle,
+.selectedtTime {
   font-weight: 700;
 }
-.cTask::before {
-  content: "•";
+.selectedtTitle,
+.selectedtTime,
+.selectedtDetails {
+  display: flex;
+  justify-content: center;
+  margin: 0 1vh;
+}
+.selectedtDetails {
+  margin-bottom: 1vh;
+}
+.selectedtTitle {
+  color: white;
+}
+.info {
+  flex: 6;
+}
+.taskButtons {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.tButton {
+  background-color: var(--cp-dGrey);
+  color: white;
+  font-weight: 700;
+
+  cursor: pointer;
+  flex: 1;
+}
+.tButton:hover {
+  background-color: var(--cp-Black);
+}
+.dayTasks {
+  margin: auto;
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, 25%);
+}
+.cTask {
+  color: var(--cp-Black);
+  font-weight: 700;
+  border-radius: 1vh;
+  margin: 0.5vh;
+  display: flex;
+  justify-content: center;
+  outline: 0.2rem solid var(--cp-Black);
+}
+.cTask:hover {
+  outline: 0.2rem dotted var(--cp-Black);
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1vh;
+}
+.iDetails {
+  resize: vertical;
 }
