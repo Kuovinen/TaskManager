@@ -8,10 +8,8 @@ function App() {
   const [taskData, setTaskData] = useState({});
   return (
     <div className="App">
-      <Month date={date} />
-      <TaskDataDisplay
-        taskData={{ title: "one", time: "two", details: "three" }}
-      />
+      <Month date={date} taskData={taskData} setTaskData={setTaskData} />
+      <TaskDataDisplay taskData={{ ...taskData }} />
       <Input />
     </div>
   );
