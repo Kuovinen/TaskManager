@@ -1,14 +1,14 @@
 export default function Task(props) {
   function showData() {
-    props.setData({
+    props.setTaskData({
       title: props.title,
-      time: props.timme,
+      time: props.time,
       details: props.details,
     });
   }
   return (
-    <div className="task" onClick={showData}>
-      <div className={props.title}></div>
+    <div className="cTask" onClick={showData}>
+      {props.title}
     </div>
   );
 }
