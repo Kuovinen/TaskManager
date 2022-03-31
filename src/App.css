@@ -1,9 +1,9 @@
 :root {
-  --cp-lGrey: rgb(158, 116, 157);
+  --cp-lGrey: hsl(301, 18%, 54%);
   --cp-lGrey25: rgb(158, 116, 157, 0.25);
   --cp-dGrey: rgb(130, 79, 132);
-  --cp-Black: rgb(72, 5, 59);
-  --cp-Purple: rgb(238, 0, 255);
+  --cp-Darkest: rgb(72, 5, 59);
+  --cp-Black: rgb(0, 0, 0);
 }
 .day {
   opacity: 0.5;
@@ -13,7 +13,7 @@
 }
 .day:hover {
   opacity: 1;
-  border: 0.2rem solid var(--cp-Black);
+  border: 0.2rem solid var(--cp-Darkest);
 }
 .day:hover .date {
   opacity: 1;
@@ -31,7 +31,7 @@
   grid-template-rows: repeat(1, 3vh);
 }
 .weekday {
-  border: 0.1rem solid var(--cp-Black);
+  border: 0.1rem solid var(--cp-Darkest);
   border-radius: 0.5vh;
   background: var(--cp-lGrey);
   display: flex;
@@ -71,13 +71,13 @@
   color: var(--cp-lGrey);
 }
 .chngM:hover {
-  color: var(--cp-Black);
+  color: var(--cp-Darkest);
 }
 
 .tButton {
   border: none;
   background: var(--cp-lGrey);
-  color: var(--cp-Black);
+  color: var(--cp-Darkest);
 }
 .taskButtons {
   display: flex;
@@ -147,7 +147,7 @@ form > button {
   flex: 1;
 }
 .tButton:hover {
-  background-color: var(--cp-Black);
+  background-color: var(--cp-Darkest);
 }
 .dayTasks {
   margin: auto;
@@ -156,16 +156,16 @@ form > button {
   grid-template-columns: repeat(auto-fill, 25%);
 }
 .cTask {
-  color: var(--cp-Black);
+  color: var(--cp-Darkest);
   font-weight: 700;
   border-radius: 1vh;
   margin: 0.5vh;
   display: flex;
   justify-content: center;
-  outline: 0.2rem solid var(--cp-Black);
+  outline: 0.2rem solid var(--cp-Darkest);
 }
 .cTask:hover {
-  outline: 0.2rem dotted var(--cp-Black);
+  outline: 0.2rem dotted var(--cp-Darkest);
 }
 
 .workspace {

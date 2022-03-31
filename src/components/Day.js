@@ -3,13 +3,13 @@ import taskList from "./taskList.js";
 
 export default function Day(props) {
   let background = "none";
-  let border = "0.1rem solid var(--cp-Black)";
+  let border = "0.1rem solid var(--cp-Darkest)";
   let tasks = [];
   if (props.weekend) {
     background = "var(--cp-lGrey)";
   }
   if (props.current) {
-    border = "0.2rem solid var(--cp-Purple)";
+    border = "0.3rem solid var(--cp-Black)";
   }
   //create tasks
   if (
@@ -32,7 +32,7 @@ export default function Day(props) {
     <div className="day" style={{ background: background, border: border }}>
       <div
         className="date"
-        style={props.day === null ? null : { background: "var(--cp-Black)" }}
+        style={props.day === null ? null : { background: "var(--cp-Darkest)" }}
       >
         {props.day}
       </div>
