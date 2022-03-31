@@ -1,12 +1,14 @@
 :root {
-  --cp-lGrey: rgb(206, 206, 206);
-  --cp-dGrey: rgb(116, 116, 116);
-  --cp-Black: rgb(34, 34, 34);
+  --cp-lGrey: rgb(158, 116, 157);
+  --cp-dGrey: rgb(130, 79, 132);
+  --cp-Black: rgb(72, 5, 59);
+  --cp-Purple: rgb(238, 0, 255);
 }
 .day {
-  border: 0.1rem solid var(--cp-Black);
   opacity: 0.5;
   cursor: pointer;
+  border-radius: 0.5vh;
+  overflow: hidden;
 }
 .day:hover {
   opacity: 1;
@@ -15,11 +17,27 @@
 .day:hover .date {
   opacity: 1;
 }
-.month {
+
+.month,
+.weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 10vh);
   gap: 0.2rem;
+}
+.weekdays {
+  grid-template-rows: repeat(1, 3vh);
+  margin-bottom: 1vh;
+}
+.weekday {
+  border: 0.1rem solid var(--cp-Black);
+  border-radius: 0.5vh;
+  background: var(--cp-lGrey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  color: white;
 }
 .year {
   font-weight: 1000;
@@ -69,5 +87,16 @@ form {
   flex-direction: column;
 }
 .selectedTask {
-  background-color: blue;
+  background-color: var(--cp-lGrey);
+}
+.dayTasks {
+  display: flex;
+  flex-direction: column;
+}
+.cTask {
+  color: blue;
+  font-weight: 700;
+}
+.cTask::before {
+  content: "•";
 }
