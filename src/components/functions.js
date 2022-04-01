@@ -47,7 +47,7 @@ function getTotalMonthDays(number) {
   return data;
 }
 export function checkIfWeekend(date) {
-  if (date == 5 || date == 6) {
+  if (date === 5 || date === 6) {
     return true;
   } else {
     return false;
