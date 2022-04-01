@@ -7,11 +7,14 @@ export default function Input(props) {
     // make a message element with the text value
     // inputTXT &&
 
+    //needs proper IF conditioning
     props.setTaskList(
       produce((draft) => {
-        draft[2022][3] = {
-          ...draft[2022][3],
-          2: [{ title: "DOG WASHING", time: "13:00", details: "Lorem" }],
+        draft[2022][props.month] = {
+          ...draft[2022][props.month],
+          [props.day]: [
+            { title: "DOG WASHING", time: "13:00", details: "Lorem" },
+          ],
         };
       })
     );
