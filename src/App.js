@@ -27,7 +27,12 @@ function App() {
       <div className="workspace">
         <SelectedDay setTaskData={setTaskData} data={selectedDay} />
         <TaskDataDisplay taskData={{ ...taskData }} />
-        <Input setTaskList={setTaskList} taskList={taskList} />
+        <Input
+          setTaskList={setTaskList}
+          taskList={taskList}
+          month={selectedDay.month}
+          day={selectedDay.day}
+        />
       </div>
     </div>
   );
