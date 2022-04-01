@@ -39,6 +39,12 @@ export default function Day(props) {
         month: props.month,
         tasks: props.taskList[2022][props.month][props.day],
       });
+    } else if (props.day) {
+      props.setSelectedDay({
+        day: props.day,
+        month: props.month,
+        tasks: [{ title: null, time: null, details: null }],
+      });
     }
   }
   return (
