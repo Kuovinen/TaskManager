@@ -1,5 +1,4 @@
 import Task from "./CTask.js";
-import taskList from "./taskList.js";
 
 export default function Day(props) {
   let background = "none";
@@ -14,25 +13,31 @@ export default function Day(props) {
   //create tasks
   if (
     props.day &&
-    taskList[2022][props.month] &&
-    taskList[2022][props.month][props.day]
+    props.taskList[2022][props.month] &&
+    props.taskList[2022][props.month][props.day]
   ) {
-    tasks = taskList[2022][props.month][props.day].map((element, index) => (
-      <Task
-        key={index}
-        title={element.title}
-        time={element.time}
-        details={element.details}
-        setTaskData={props.setTaskData}
-      />
-    ));
+    tasks = props.taskList[2022][props.month][props.day].map(
+      (element, index) => (
+        <Task
+          key={index}
+          title={element.title}
+          time={element.time}
+          details={element.details}
+          setTaskData={props.setTaskData}
+        />
+      )
+    );
   }
   function assign() {
-    if (props.day && taskList[2022][props.month][props.day]) {
+    if (
+      props.day &&
+      props.taskList[2022][props.month] &&
+      props.taskList[2022][props.month][props.day]
+    ) {
       props.setSelectedDay({
         day: props.day,
         month: props.month,
-        tasks: taskList[2022][props.month][props.day],
+        tasks: props.taskList[2022][props.month][props.day],
       });
     }
   }
