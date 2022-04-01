@@ -15,7 +15,6 @@ export default function Month(props) {
     "Saturday",
     "Sunday",
   ];
-
   //Create array fillied with day components, adding a style prop to weekends
   function constructMonth(number) {
     let days = yearObject.months[number].map((element, index) => {
@@ -43,6 +42,7 @@ export default function Month(props) {
           taskData={props.taskData}
           setSelectedDay={props.setSelectedDay}
           setTaskData={props.setTaskData}
+          taskList={props.taskList}
         />
       );
     });
@@ -74,7 +74,7 @@ export default function Month(props) {
   //CHANGE DISPLAYED MONTH ON NUMBER CHANGE (linked to button functions)
   useEffect(() => {
     setDisplayedMonth(constructMonth(displayedMonthNumber));
-  }, [displayedMonthNumber]);
+  }, [displayedMonthNumber, props.taskList]);
   useEffect(() => {
     setMonthTitle(getMonthString(displayedMonthNumber));
   }, [displayedMonthNumber]);
