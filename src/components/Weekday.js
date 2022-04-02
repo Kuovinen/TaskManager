@@ -1,3 +1,3 @@
-export default function Day(props) {
+export default function Weekday(props) {
   return <div className="weekday">{props.day}</div>;
 }
