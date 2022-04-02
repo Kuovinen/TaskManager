@@ -10,7 +10,7 @@ export default function Day(props) {
   if (props.current) {
     border = "0.3rem solid var(--cp-Black)";
   }
-  //create tasks
+  //create tasks based on already available taskList
   if (
     props.day &&
     props.taskList[2022][props.month] &&
@@ -28,6 +28,8 @@ export default function Day(props) {
       )
     );
   }
+  // fills out the first box of the input section. Date if day has no tasks,
+  // date+tasks if it does
   function assign() {
     if (
       props.day &&
@@ -47,9 +49,11 @@ export default function Day(props) {
       });
     }
   }
+
   return (
     <div
       className="day"
+      tabindex="0"
       onClick={assign}
       style={{ background: background, border: border }}
     >

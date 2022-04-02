@@ -61,7 +61,6 @@ export default function Month(props) {
     }
   }
   //STATES
-
   const [displayedMonthNumber, setDisplayedMonthNumber] = useState(
     props.date.getMonth()
   );
@@ -71,6 +70,7 @@ export default function Month(props) {
   const [monthTitle, setMonthTitle] = useState(
     getMonthString(displayedMonthNumber)
   );
+
   //CHANGE DISPLAYED MONTH ON NUMBER CHANGE (linked to button functions)
   useEffect(() => {
     setDisplayedMonth(constructMonth(displayedMonthNumber));
@@ -78,6 +78,7 @@ export default function Month(props) {
   useEffect(() => {
     setMonthTitle(getMonthString(displayedMonthNumber));
   }, [displayedMonthNumber]);
+
   return (
     <section className="main">
       <div className="buttons">
