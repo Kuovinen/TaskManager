@@ -4,7 +4,6 @@ import Month from "./components/Month.js";
 import TaskDataDisplay from "./components/TaskDataDisplay.js";
 import Input from "./components/Input.js";
 import SelectedDay from "./components/SelectedDay.js";
-import tasks from "./components/taskList.js";
 function App() {
   let date = new Date();
   const [taskData, setTaskData] = useState({});
@@ -13,7 +12,13 @@ function App() {
     month: null,
     tasks: [{ title: null, time: null, details: null }],
   });
-  const [taskList, setTaskList] = useState(tasks);
+  const [taskList, setTaskList] = useState(
+    JSON.parse(localStorage.getItem("tasks"))
+  );
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(taskList));
+  }, [taskList]);
 
   return (
     <div className="App">
@@ -26,7 +31,12 @@ function App() {
       />
       <div className="workspace">
         <SelectedDay setTaskData={setTaskData} data={selectedDay} />
-        <TaskDataDisplay taskData={{ ...taskData }} />
+        <TaskDataDisplay
+          taskData={{ ...taskData }}
+          taskList={taskList}
+          day={selectedDay.day}
+          month={selectedDay.month}
+        />
         <Input
           setTaskList={setTaskList}
           taskList={taskList}
