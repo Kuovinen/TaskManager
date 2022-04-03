@@ -34,8 +34,10 @@ function App() {
         <TaskDataDisplay
           taskData={{ ...taskData }}
           taskList={taskList}
+          setSelectedDay={setSelectedDay}
           day={selectedDay.day}
           month={selectedDay.month}
+          setTaskList={setTaskList}
         />
         <Input
           setTaskList={setTaskList}
