@@ -53,7 +53,6 @@ export default function Day(props) {
   return (
     <div
       className="day"
-      tabindex="0"
       onClick={assign}
       style={{ background: background, border: border }}
     >
