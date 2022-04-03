@@ -1,9 +1,38 @@
+import produce from "immer";
+
 export default function TaskDataDisplay(props) {
-  function editTask() {
-    console.log("taskEdited");
-  }
   function deleteTask() {
-    console.log("taskDeleted");
+    if (props.day) {
+      //task data
+      let target = {
+        title: props.taskData.title,
+        time: props.taskData.time,
+        details: props.taskData.details,
+      };
+      //change to string for future comparison.
+      //Because objects are need to be the same ref to be equal
+      target = JSON.stringify(target);
+      //selected day
+      let inspectedDay = props.taskList[2022][props.month][props.day];
+      //create updated day Data
+      let updatedDay = inspectedDay.filter((element, index) => {
+        if (target != JSON.stringify(inspectedDay[index])) {
+          return element;
+        }
+      });
+      //Update the selected Day window at the bottom, removing the deleted task
+      props.setSelectedDay(
+        produce((draft) => {
+          draft.tasks = updatedDay;
+        })
+      );
+      //Update the calendar day display, removing the deleted task
+      props.setTaskList(
+        produce((draft) => {
+          draft[2022][props.month][props.day] = updatedDay;
+        })
+      );
+    }
   }
 
   return (
@@ -15,9 +44,6 @@ export default function TaskDataDisplay(props) {
       </div>
 
       <div className="taskButtons">
-        <button className="tButton" onClick={editTask}>
-          EDIT
-        </button>
         <button className="tButton" onClick={deleteTask}>
           DELETE
         </button>
