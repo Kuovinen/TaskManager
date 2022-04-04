@@ -31,7 +31,6 @@ export default function Month(props) {
       ) {
         current = true;
       }
-
       return (
         <Day
           key={index + number}
@@ -40,6 +39,7 @@ export default function Month(props) {
           weekend={weekend}
           current={current}
           taskData={props.taskData}
+          selectedDay={props.selectedDay}
           setSelectedDay={props.setSelectedDay}
           setTaskData={props.setTaskData}
           taskList={props.taskList}
@@ -53,12 +53,22 @@ export default function Month(props) {
     if (displayedMonthNumber > 0) {
       setDisplayedMonthNumber((current) => current - 1);
     }
+    props.setSelectedDay({
+      day: null,
+      month: null,
+      tasks: [{ title: null, time: null, details: null }],
+    });
   }
   //set displayed mongth to the next one
   function nextMonth() {
     if (displayedMonthNumber < 11) {
       setDisplayedMonthNumber((current) => current + 1);
     }
+    props.setSelectedDay({
+      day: null,
+      month: null,
+      tasks: [{ title: null, time: null, details: null }],
+    });
   }
   //STATES
   const [displayedMonthNumber, setDisplayedMonthNumber] = useState(
@@ -74,7 +84,7 @@ export default function Month(props) {
   //CHANGE DISPLAYED MONTH ON NUMBER CHANGE (linked to button functions)
   useEffect(() => {
     setDisplayedMonth(constructMonth(displayedMonthNumber));
-  }, [displayedMonthNumber, props.taskList]);
+  }, [displayedMonthNumber, props.taskList, props.selectedDay]);
   useEffect(() => {
     setMonthTitle(getMonthString(displayedMonthNumber));
   }, [displayedMonthNumber]);

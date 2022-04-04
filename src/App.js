@@ -19,11 +19,11 @@ function App() {
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(taskList));
   }, [taskList]);
-
   return (
     <div className="App">
       <Month
         date={date}
+        selectedDay={selectedDay}
         setSelectedDay={setSelectedDay}
         taskData={taskData}
         setTaskData={setTaskData}

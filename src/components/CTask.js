@@ -6,9 +6,5 @@ export default function Task(props) {
       details: props.details,
     });
   }
-  return (
-    <div className="cTask" onClick={showData}>
-      T
-    </div>
-  );
+  return <div className="cTask" onClick={showData}></div>;
 }

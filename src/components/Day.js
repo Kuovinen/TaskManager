@@ -1,16 +1,18 @@
 import Task from "./CTask.js";
 
 export default function Day(props) {
-  let background = "none";
-  let border = "0.1rem solid var(--cp-Darkest)";
   let tasks = [];
-  if (props.weekend) {
-    background = "var(--cp-lGrey)";
-  }
-  if (props.current) {
-    border = "0.3rem solid var(--cp-Black)";
-  }
+  let border = props.current ? "0.2rem solid red" : "none";
+  let dateStyle = props.weekend ? { color: "white" } : null;
+  let dayStyle = props.weekend
+    ? { background: "var(--cp-lGrey)", border: border }
+    : { border: border };
   //create tasks based on already available taskList
+  dayStyle =
+    props.selectedDay.day === props.day && props.selectedDay.day != null
+      ? { background: "var(--cp-Blue)" }
+      : dayStyle;
+
   if (
     props.day &&
     props.taskList[2022][props.month] &&
@@ -31,6 +33,7 @@ export default function Day(props) {
   // fills out the first box of the input section. Date if day has no tasks,
   // date+tasks if it does
   function assign() {
+    //if an actual functioning day and a day tasks already exist
     if (
       props.day &&
       props.taskList[2022][props.month] &&
@@ -41,7 +44,9 @@ export default function Day(props) {
         month: props.month,
         tasks: props.taskList[2022][props.month][props.day],
       });
-    } else if (props.day) {
+    }
+    //if an actual functioning day and day tasks are not present
+    else if (props.day) {
       props.setSelectedDay({
         day: props.day,
         month: props.month,
@@ -49,17 +54,9 @@ export default function Day(props) {
       });
     }
   }
-
   return (
-    <div
-      className="day"
-      onClick={assign}
-      style={{ background: background, border: border }}
-    >
-      <div
-        className="date"
-        style={props.day === null ? null : { background: "var(--cp-Darkest)" }}
-      >
+    <div className="day" onClick={assign} style={dayStyle}>
+      <div className="date" style={props.day === null ? null : dateStyle}>
         {props.day}
       </div>
       <div className="dayTasks">{tasks}</div>

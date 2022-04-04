@@ -46,9 +46,7 @@ export default function Input(props) {
       })
     );
   }
-  function deleteData() {
-    console.log(props.taskList[2022][props.month][props.day]);
-  }
+
   return (
     <div className="inputForm">
       <form
@@ -59,7 +57,7 @@ export default function Input(props) {
         <input className="iInput" placeholder="TITLE"></input>
         <input className="iInput" type="time"></input>
         <textarea className="iDetails" placeholder="DETAILS"></textarea>
-        <input className="submitButton" type="submit" value="save"></input>
+        <input className="submitButton" type="submit" value="SAVE"></input>
       </form>
     </div>
   );
