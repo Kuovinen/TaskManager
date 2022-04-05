@@ -10,7 +10,7 @@ export default function Day(props) {
   //create tasks based on already available taskList
   dayStyle =
     props.selectedDay.day === props.day && props.selectedDay.day != null
-      ? { background: "var(--cp-Blue)" }
+      ? { background: "var(--cp-Blue)", border: border }
       : dayStyle;
 
   if (
