@@ -4,6 +4,7 @@ import Month from "./components/Month.js";
 import TaskDataDisplay from "./components/TaskDataDisplay.js";
 import Input from "./components/Input.js";
 import SelectedDay from "./components/SelectedDay.js";
+import Toggle from "./components/Toggle.js";
 function App() {
   let date = new Date();
   const [taskData, setTaskData] = useState({});
@@ -15,12 +16,15 @@ function App() {
   const [taskList, setTaskList] = useState(
     JSON.parse(localStorage.getItem("tasks"))
   );
+  const [yearStyle, setYearStyle] = useState({ color: "var(--cp-White)" });
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(taskList));
   }, [taskList]);
   return (
     <div className="App">
+      <Toggle setYearStyle={setYearStyle} yearStyle={yearStyle} />
+
       <Month
         date={date}
         selectedDay={selectedDay}
@@ -28,6 +32,7 @@ function App() {
         taskData={taskData}
         setTaskData={setTaskData}
         taskList={taskList}
+        yearStyle={yearStyle}
       />
       <div className="workspace">
         <SelectedDay setTaskData={setTaskData} data={selectedDay} />

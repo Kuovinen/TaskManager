@@ -92,13 +92,13 @@ export default function Month(props) {
   return (
     <section className="main">
       <div className="buttons">
-        <button className="chngM" onClick={prevMonth}>
+        <button className="chngM" onClick={prevMonth} style={props.yearStyle}>
           {"<<"}
         </button>{" "}
-        <div className="year">
+        <div className="year" style={props.yearStyle}>
           {monthTitle} {year}
         </div>
-        <button className="chngM" onClick={nextMonth}>
+        <button className="chngM" onClick={nextMonth} style={props.yearStyle}>
           {">>"}
         </button>
       </div>
