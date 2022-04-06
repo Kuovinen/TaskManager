@@ -1,13 +1,9 @@
 import produce from "immer";
 import React from "react";
-
+//component in the lower section, last one, for data input.
 export default function Input(props) {
   function saveData(event) {
     event.preventDefault();
-    // if there is text in input field (then it's "trufy")
-    // make a message element with the text value
-    // inputTXT &&
-    //needs proper IF conditioning
     props.setTaskList(
       produce((draft) => {
         //if there is at least SOME data to save and a day is selected

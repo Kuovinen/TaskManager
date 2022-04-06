@@ -1,5 +1,6 @@
 import InfoTask from "./InfoTask.js";
 import getMonthString from "./functions.js";
+//component used in the lower section, first element, displays the days tasks.
 export default function SelectedDay(props) {
   return (
     <div className="selectedDay">

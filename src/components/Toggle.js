@@ -1,3 +1,4 @@
+//Toggle switch to change theme from dark to light mode
 export default function Toggle(props) {
   function change() {
     let background = document.body.style.backgroundColor;
@@ -8,7 +9,6 @@ export default function Toggle(props) {
         ? { color: "var(--cp-dGrey)" }
         : { color: "var(--cp-White)" }
     );
-    console.log(props.yearStyle);
   }
   return (
     <label className="switch">

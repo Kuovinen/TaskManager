@@ -1,5 +1,5 @@
 import produce from "immer";
-
+//component in the lower section, midddle, displays each task data details
 export default function TaskDataDisplay(props) {
   function deleteTask() {
     if (props.day) {
@@ -14,7 +14,8 @@ export default function TaskDataDisplay(props) {
       target = JSON.stringify(target);
       //selected day
       let inspectedDay = props.taskList[2022][props.month][props.day];
-      //create updated day Data
+      //create updated day Data, by excluding the component that has the same
+      //value as the one that's selected.
       let updatedDay = inspectedDay.filter((element, index) => {
         if (target != JSON.stringify(inspectedDay[index])) {
           return element;
