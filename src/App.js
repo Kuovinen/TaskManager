@@ -7,6 +7,26 @@ import SelectedDay from "./components/SelectedDay.js";
 import Toggle from "./components/Toggle.js";
 function App() {
   let date = new Date();
+  let initTaskList = {
+    [date.getYear() + 1900]: {
+      0: {},
+      1: {},
+      2: {},
+      3: {},
+      4: {},
+      5: {},
+      6: {},
+      7: {},
+      8: {},
+      9: {},
+      10: {},
+      11: {},
+    },
+  };
+  if (localStorage.getItem("tasks") === null) {
+    localStorage.setItem("tasks", JSON.stringify(initTaskList));
+  }
+
   const [taskData, setTaskData] = useState({});
   const [selectedDay, setSelectedDay] = useState({
     day: null,
