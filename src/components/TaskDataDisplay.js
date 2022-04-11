@@ -17,9 +17,7 @@ export default function TaskDataDisplay(props) {
       //create updated day Data, by excluding the component that has the same
       //value as the one that's selected.
       let updatedDay = inspectedDay.filter((element, index) => {
-        if (target !== JSON.stringify(inspectedDay[index])) {
-          return element;
-        }
+        target !== JSON.stringify(inspectedDay[index]);
       });
       //Update the selected Day window at the bottom, removing the deleted task
       props.setSelectedDay(
