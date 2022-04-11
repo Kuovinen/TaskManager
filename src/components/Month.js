@@ -84,7 +84,7 @@ export default function Month(props) {
 
   //CHANGE DISPLAYED MONTH ON NUMBER CHANGE (linked to button functions)
   useEffect(() => {
-    setDisplayedMonth(constructMonth(displayedMonthNumber));
+    setDisplayedMonth(() => constructMonth(displayedMonthNumber));
   }, [displayedMonthNumber, props.taskList, props.selectedDay]);
   useEffect(() => {
     setMonthTitle(getMonthString(displayedMonthNumber));
