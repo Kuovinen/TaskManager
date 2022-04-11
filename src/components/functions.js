@@ -37,6 +37,9 @@ export default function getMonthString(number) {
     case 11:
       month = "December";
       break;
+    default:
+      month = "Month Error Has Occured";
+      break;
   }
   return month;
 }
