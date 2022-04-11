@@ -24,7 +24,9 @@ function App() {
     },
   };
   if (localStorage.getItem("tasks") === null) {
+    console.log("did not find local storage tasks, generating:");
     localStorage.setItem("tasks", JSON.stringify(initTaskList));
+    console.log("Generated local storage.");
   }
 
   const [taskData, setTaskData] = useState({});
