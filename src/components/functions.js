@@ -38,7 +38,7 @@ export default function getMonthString(number) {
       month = "December";
       break;
     default:
-      month = "Month Error Has Occured";
+      month = "";
       break;
   }
   return month;
