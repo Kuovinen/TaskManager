@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Month from "./components/Month.js";
 import TaskDataDisplay from "./components/TaskDataDisplay.js";
 import Input from "./components/Input.js";
@@ -16,7 +16,7 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(initTL));
     console.log("Generated local storage.");
   }
-
+  const [year, setYear] = useState(date.getFullYear());
   const [taskData, setTaskData] = useState({});
   const [selectedDay, setSelectedDay] = useState({
     day: null,
@@ -27,6 +27,8 @@ function App() {
     JSON.parse(localStorage.getItem("tasks"))
   );
   const [yearStyle, setYearStyle] = useState({ color: "var(--cp-White)" });
+
+  const initialRender = useRef(true);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(taskList));
@@ -43,6 +45,9 @@ function App() {
         setTaskData={setTaskData}
         taskList={taskList}
         yearStyle={yearStyle}
+        year={year}
+        setYear={setYear}
+        initialRender={initialRender}
       />
       <div className="workspace">
         <SelectedDay setTaskData={setTaskData} data={selectedDay} />
@@ -52,13 +57,16 @@ function App() {
           setSelectedDay={setSelectedDay}
           day={selectedDay.day}
           month={selectedDay.month}
+          year={year}
           setTaskList={setTaskList}
         />
         <Input
           setTaskList={setTaskList}
           taskList={taskList}
+          year={year}
           month={selectedDay.month}
           day={selectedDay.day}
+          initialRender={initialRender}
         />
       </div>
     </div>
