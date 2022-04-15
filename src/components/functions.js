@@ -62,7 +62,6 @@ export function getPaddingAfter(number) {
 //return obj containing YEAR and MONTHS keys, MONTHS filled with arrays of days;
 //exmpl MONTH  : [null,null,null,1,2,3,4,5...30]
 export function createYearData(yearNumber) {
-  let date = new Date();
   let yearObject = {
     year: yearNumber,
     months: [],
@@ -70,14 +69,13 @@ export function createYearData(yearNumber) {
   for (let i = 0; i < 12; i++) {
     let month = [];
     //number of days before the first of the month
-    let PaddingDaysBefore = new Date(date.getFullYear(), i).getDay();
+    let PaddingDaysBefore = new Date(yearNumber, i).getDay();
     //since getDay is american, sunday ==0 instead of ==7, need an offset
     if (PaddingDaysBefore === 0) {
       PaddingDaysBefore = 7;
     } else {
       PaddingDaysBefore -= 1;
     }
-    console.log(i + ":" + PaddingDaysBefore);
     //make empty days padding
     for (let j = 0; j < PaddingDaysBefore; j++) {
       month.push(null);
@@ -87,11 +85,11 @@ export function createYearData(yearNumber) {
     for (let l = 0; l < days; l++) {
       month.push({
         date: l + 1,
-        weekday: new Date(date.getFullYear(), i, l + 1).getDay() + 1,
+        weekday: new Date(yearNumber, i, l + 1).getDay() + 1,
       });
     }
     yearObject.months.push(month);
-    let PaddingDaysAfter = new Date(date.getFullYear(), i + 1, 0).getDay();
+    let PaddingDaysAfter = new Date(yearNumber, i + 1, 0).getDay();
 
     for (let k = 0; k < getPaddingAfter(PaddingDaysAfter); k++) {
       month.push(null);
@@ -123,4 +121,22 @@ export function initTaskList() {
     initTL = { ...initTL, [year]: emptyYear };
   }
   return initTL;
+}
+
+export function decideWeekdayTxt() {
+  if (window.innerWidth < 300) {
+    return ["M", "T", "W", "T", "F", "S", "S"];
+  } else if (window.innerWidth >= 300 && window.innerWidth <= 700) {
+    return ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+  } else if (window.innerWidth > 700) {
+    return [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ];
+  }
 }
