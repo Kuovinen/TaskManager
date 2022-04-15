@@ -53,16 +53,6 @@ input:checked + .slider {
   background: var(--cp-White);
 }
 
-.day {
-  cursor: pointer;
-  border-radius: 0.5vh;
-  overflow: hidden;
-  background: var(--cp-White);
-}
-.day:hover {
-  opacity: 0.9;
-}
-
 .month,
 .weekdays {
   display: grid;
@@ -84,7 +74,15 @@ input:checked + .slider {
   font-weight: 700;
   color: white;
 }
-
+.day {
+  cursor: pointer;
+  border-radius: 0.5vh;
+  overflow: hidden;
+  background: var(--cp-White);
+}
+.day:hover {
+  opacity: 0.9;
+}
 .year {
   color: var(--cp-lGrey);
   font-weight: 1000;
@@ -222,7 +220,7 @@ form {
 
 .workspace {
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-columns: auto-fill;
   gap: 1vh;
 }
 .iDetails {
