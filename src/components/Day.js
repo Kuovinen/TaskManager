@@ -17,10 +17,10 @@ export default function Day(props) {
   //props.day indicates if the calendar day is empty (preveious of next month)
   if (
     props.day &&
-    props.taskList[2022][props.month] &&
-    props.taskList[2022][props.month][props.day]
+    props.taskList[props.year][props.month] &&
+    props.taskList[props.year][props.month][props.day]
   ) {
-    tasks = props.taskList[2022][props.month][props.day].map(
+    tasks = props.taskList[props.year][props.month][props.day].map(
       (element, index) => (
         <Task
           key={index}
@@ -38,13 +38,13 @@ export default function Day(props) {
     //if an actual functioning day and a day tasks already exist, assign all data
     if (
       props.day &&
-      props.taskList[2022][props.month] &&
-      props.taskList[2022][props.month][props.day]
+      props.taskList[props.year][props.month] &&
+      props.taskList[props.year][props.month][props.day]
     ) {
       props.setSelectedDay({
         day: props.day,
         month: props.month,
-        tasks: props.taskList[2022][props.month][props.day],
+        tasks: props.taskList[props.year][props.month][props.day],
       });
     }
     //if an actual functioning day and day tasks are not present

@@ -13,7 +13,7 @@ export default function TaskDataDisplay(props) {
       //Because objects are need to be the same ref to be equal
       target = JSON.stringify(target);
       //selected day
-      let inspectedDay = props.taskList[2022][props.month][props.day];
+      let inspectedDay = props.taskList[props.year][props.month][props.day];
       //create updated day Data, by excluding the component that has the same
       //value as the one that's selected.
       let updatedDay = inspectedDay.filter(
@@ -28,7 +28,7 @@ export default function TaskDataDisplay(props) {
       //Update the calendar day display, removing the deleted task
       props.setTaskList(
         produce((draft) => {
-          draft[2022][props.month][props.day] = updatedDay;
+          draft[props.year][props.month][props.day] = updatedDay;
         })
       );
     }

@@ -16,9 +16,9 @@ export default function Input(props) {
           //decide if the day already has tasks assigned to it
           //if so - spread them out , add a new one and assign all to the value
           //if not, simply assign the new one to the value
-          let newDayContent = draft[2022][props.month][props.day]
+          let newDayContent = draft[props.year][props.month][props.day]
             ? [
-                ...draft[2022][props.month][props.day],
+                ...draft[props.year][props.month][props.day],
                 {
                   title: event.target[0].value,
                   time: event.target[1].value,
@@ -34,8 +34,8 @@ export default function Input(props) {
               ];
           //update the month data by spreading it and adding content of the
           //set up day data
-          draft[2022][props.month] = {
-            ...draft[2022][props.month],
+          draft[props.year][props.month] = {
+            ...draft[props.year][props.month],
             [props.day]: newDayContent,
           };
         }
