@@ -44,7 +44,7 @@ export default function getMonthString(number) {
   return month;
 }
 //returns total number of days in current years month
-function getTotalMonthDays(number) {
+export function getTotalMonthDays(number) {
   let date = new Date();
   let data = new Date(date.getFullYear(), number + 1, 0).getDate();
   return data;
@@ -56,7 +56,7 @@ export function checkIfWeekend(date) {
     return false;
   }
 }
-function getPaddingAfter(number) {
+export function getPaddingAfter(number) {
   return 7 - (number + 1);
 }
 //return obj containing YEAR and MONTHS keys, MONTHS filled with arrays of days;
@@ -71,6 +71,13 @@ export function createYearData(yearNumber) {
     let month = [];
     //number of days before the first of the month
     let PaddingDaysBefore = new Date(date.getFullYear(), i).getDay();
+    //since getDay is american, sunday ==0 instead of ==7, need an offset
+    if (PaddingDaysBefore === 0) {
+      PaddingDaysBefore = 7;
+    } else {
+      PaddingDaysBefore -= 1;
+    }
+    console.log(i + ":" + PaddingDaysBefore);
     //make empty days padding
     for (let j = 0; j < PaddingDaysBefore; j++) {
       month.push(null);
@@ -91,4 +98,29 @@ export function createYearData(yearNumber) {
     }
   }
   return yearObject;
+}
+
+export function initTaskList() {
+  let date = new Date();
+  let year = date.getYear() + 1875;
+  let initTL = {};
+  let emptyYear = {
+    0: {},
+    1: {},
+    2: {},
+    3: {},
+    4: {},
+    5: {},
+    6: {},
+    7: {},
+    8: {},
+    9: {},
+    10: {},
+    11: {},
+  };
+  for (let i = year; i < year + 50; i++) {
+    let year = i;
+    initTL = { ...initTL, [year]: emptyYear };
+  }
+  return initTL;
 }
