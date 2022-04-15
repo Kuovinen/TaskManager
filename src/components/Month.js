@@ -6,7 +6,7 @@ import getMonthString, { createYearData } from "./functions.js";
 export default function Month(props) {
   let year = props.date.getFullYear();
   let yearObject = createYearData(year);
-  let weekdays = [
+  const [weekdays, setWeekdays] = useState([
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -14,7 +14,7 @@ export default function Month(props) {
     "Friday",
     "Saturday",
     "Sunday",
-  ];
+  ]);
   //Create array fillied with day components
   function constructMonth(number) {
     let days = yearObject.months[number].map((element, index) => {
@@ -81,7 +81,30 @@ export default function Month(props) {
   const [monthTitle, setMonthTitle] = useState(
     getMonthString(displayedMonthNumber)
   );
-
+  if (
+    window.innerWidth < 700 &&
+    window.innerWidth > 300 &&
+    weekdays[0] === "Monday"
+  ) {
+    console.log(window.screen.width + " PHONE");
+    setWeekdays(["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]);
+  }
+  if (window.innerWidth >= 700 && weekdays[0] === "MON") {
+    console.log(window.screen.width + " WIDE");
+    setWeekdays([
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ]);
+  }
+  if (window.innerWidth <= 300 && weekdays[0] !== "M") {
+    console.log(window.screen.width + " EXTRA NARROW");
+    setWeekdays(["M", "T", "W", "T", "F", "S", "S"]);
+  }
   //CHANGE DISPLAYED MONTH ON NUMBER CHANGE (linked to button functions)
   useEffect(() => {
     setDisplayedMonth(() => constructMonth(displayedMonthNumber));
@@ -104,8 +127,8 @@ export default function Month(props) {
         </button>
       </div>
       <div className="weekdays">
-        {weekdays.map((element) => (
-          <Weekday key={element} day={element} />
+        {weekdays.map((element, index) => (
+          <Weekday key={element + index} day={element} />
         ))}
       </div>
       <div className="month">{displayedMonth}</div>
