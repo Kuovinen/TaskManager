@@ -1,20 +1,15 @@
 import Day from "./Day.js";
 import Weekday from "./Weekday.js";
-import { useEffect, useState } from "react";
-import getMonthString, { createYearData } from "./functions.js";
+import { useEffect, useState, useRef } from "react";
+import getMonthString, {
+  createYearData,
+  decideWeekdayTxt,
+} from "./functions.js";
 //components that produces the main month element
 export default function Month(props) {
-  let year = props.date.getFullYear();
-  let yearObject = createYearData(year);
-  const [weekdays, setWeekdays] = useState([
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ]);
+  const initialRender = useRef(false);
+  const [yearObject, setYearObject] = useState(createYearData(props.year));
+  const weekdays = decideWeekdayTxt();
   //Create array fillied with day components
   function constructMonth(number) {
     let days = yearObject.months[number].map((element, index) => {
@@ -37,6 +32,7 @@ export default function Month(props) {
           key={index + number}
           day={element === null ? null : element.date}
           month={number}
+          year={props.year}
           weekend={weekend}
           current={current}
           taskData={props.taskData}
@@ -53,6 +49,9 @@ export default function Month(props) {
   function prevMonth() {
     if (displayedMonthNumber > 0) {
       setDisplayedMonthNumber((current) => current - 1);
+    } else {
+      setDisplayedMonthNumber(11);
+      props.setYear(() => props.year - 1);
     }
     props.setSelectedDay({
       day: null,
@@ -64,6 +63,9 @@ export default function Month(props) {
   function nextMonth() {
     if (displayedMonthNumber < 11) {
       setDisplayedMonthNumber((current) => current + 1);
+    } else {
+      setDisplayedMonthNumber(0);
+      props.setYear(() => props.year + 1);
     }
     props.setSelectedDay({
       day: null,
@@ -81,38 +83,32 @@ export default function Month(props) {
   const [monthTitle, setMonthTitle] = useState(
     getMonthString(displayedMonthNumber)
   );
-  if (
-    window.innerWidth < 700 &&
-    window.innerWidth > 300 &&
-    weekdays[0] === "Monday"
-  ) {
-    console.log(window.screen.width + " PHONE");
-    setWeekdays(["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]);
-  }
-  if (window.innerWidth >= 700 && weekdays[0] === "MON") {
-    console.log(window.screen.width + " WIDE");
-    setWeekdays([
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ]);
-  }
-  if (window.innerWidth <= 300 && weekdays[0] !== "M") {
-    console.log(window.screen.width + " EXTRA NARROW");
-    setWeekdays(["M", "T", "W", "T", "F", "S", "S"]);
-  }
+  //if year changed, update the yearObject to regenerate calendar structure data
+  useEffect(() => {
+    if (initialRender.current) {
+      setYearObject(() => createYearData(props.year));
+    }
+  }, [props.year]);
+  //if yearObject changed, reconstruct the current month
+  useEffect(() => {
+    if (initialRender.current) {
+      constructMonth(displayedMonthNumber);
+    }
+  }, [yearObject]);
+
   //CHANGE DISPLAYED MONTH ON NUMBER CHANGE (linked to button functions)
   useEffect(() => {
-    setDisplayedMonth(() => constructMonth(displayedMonthNumber));
-  }, [displayedMonthNumber, props.taskList, props.selectedDay]);
+    if (initialRender.current) {
+      setDisplayedMonth(() => constructMonth(displayedMonthNumber));
+    }
+  }, [props.taskList, props.selectedDay, yearObject]);
   useEffect(() => {
-    setMonthTitle(getMonthString(displayedMonthNumber));
+    if (initialRender.current) {
+      setMonthTitle(getMonthString(displayedMonthNumber));
+    } else {
+      initialRender.current = true;
+    }
   }, [displayedMonthNumber]);
-
   return (
     <section className="main">
       <div className="buttons">
@@ -120,7 +116,7 @@ export default function Month(props) {
           {"<<"}
         </button>{" "}
         <div className="year" style={props.yearStyle}>
-          {monthTitle} {year}
+          {monthTitle} {props.year}
         </div>
         <button className="chngM" onClick={nextMonth} style={props.yearStyle}>
           {">>"}
