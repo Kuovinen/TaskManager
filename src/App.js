@@ -5,27 +5,15 @@ import TaskDataDisplay from "./components/TaskDataDisplay.js";
 import Input from "./components/Input.js";
 import SelectedDay from "./components/SelectedDay.js";
 import Toggle from "./components/Toggle.js";
+import { initTaskList } from "./components/functions.js";
 function App() {
   let date = new Date();
-  let initTaskList = {
-    [date.getYear() + 1900]: {
-      0: {},
-      1: {},
-      2: {},
-      3: {},
-      4: {},
-      5: {},
-      6: {},
-      7: {},
-      8: {},
-      9: {},
-      10: {},
-      11: {},
-    },
-  };
+
+  //initTaskList;
+  let initTL = initTaskList();
   if (localStorage.getItem("tasks") === null) {
     console.log("did not find local storage tasks, generating:");
-    localStorage.setItem("tasks", JSON.stringify(initTaskList));
+    localStorage.setItem("tasks", JSON.stringify(initTL));
     console.log("Generated local storage.");
   }
 
