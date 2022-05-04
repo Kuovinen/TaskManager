@@ -44,9 +44,9 @@ export default function getMonthString(number) {
   return month;
 }
 //returns total number of days in current years month
-export function getTotalMonthDays(number) {
+export function getTotalMonthDays(number, year) {
   let date = new Date();
-  let data = new Date(date.getFullYear(), number + 1, 0).getDate();
+  let data = new Date(year, number + 1, 0).getDate();
   return data;
 }
 export function checkIfWeekend(date) {
@@ -57,7 +57,7 @@ export function checkIfWeekend(date) {
   }
 }
 export function getPaddingAfter(number) {
-  return 7 - (number + 1);
+  return 7 - number;
 }
 //return obj containing YEAR and MONTHS keys, MONTHS filled with arrays of days;
 //exmpl MONTH  : [null,null,null,1,2,3,4,5...30]
@@ -72,7 +72,7 @@ export function createYearData(yearNumber) {
     let PaddingDaysBefore = new Date(yearNumber, i).getDay();
     //since getDay is american, sunday ==0 instead of ==7, need an offset
     if (PaddingDaysBefore === 0) {
-      PaddingDaysBefore = 7;
+      PaddingDaysBefore = 6;
     } else {
       PaddingDaysBefore -= 1;
     }
@@ -80,7 +80,7 @@ export function createYearData(yearNumber) {
     for (let j = 0; j < PaddingDaysBefore; j++) {
       month.push(null);
     }
-    let days = getTotalMonthDays(i);
+    let days = getTotalMonthDays(i, yearNumber);
     //make the actual days
     for (let l = 0; l < days; l++) {
       month.push({
@@ -90,7 +90,7 @@ export function createYearData(yearNumber) {
     }
     yearObject.months.push(month);
     let PaddingDaysAfter = new Date(yearNumber, i + 1, 0).getDay();
-
+    console.log(i + "|" + PaddingDaysAfter + "-" + yearNumber);
     for (let k = 0; k < getPaddingAfter(PaddingDaysAfter); k++) {
       month.push(null);
     }

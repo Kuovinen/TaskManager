@@ -35,20 +35,22 @@ function App() {
   }, [taskList]);
   return (
     <div className="App">
-      <Toggle setYearStyle={setYearStyle} yearStyle={yearStyle} />
+      <div className="timetable">
+        <Toggle setYearStyle={setYearStyle} yearStyle={yearStyle} />
+        <Month
+          date={date}
+          selectedDay={selectedDay}
+          setSelectedDay={setSelectedDay}
+          taskData={taskData}
+          setTaskData={setTaskData}
+          taskList={taskList}
+          yearStyle={yearStyle}
+          year={year}
+          setYear={setYear}
+          initialRender={initialRender}
+        />
+      </div>
 
-      <Month
-        date={date}
-        selectedDay={selectedDay}
-        setSelectedDay={setSelectedDay}
-        taskData={taskData}
-        setTaskData={setTaskData}
-        taskList={taskList}
-        yearStyle={yearStyle}
-        year={year}
-        setYear={setYear}
-        initialRender={initialRender}
-      />
       <div className="workspace">
         <SelectedDay setTaskData={setTaskData} data={selectedDay} />
         <TaskDataDisplay

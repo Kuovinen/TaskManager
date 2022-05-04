@@ -52,18 +52,27 @@ input:checked + .slider:before {
 input:checked + .slider {
   background: var(--cp-White);
 }
-
+.timetable {
+  flex: 10;
+}
+.App {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 .month,
 .weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(6, 10vh);
-  margin-bottom: 1vh;
+  grid-template-rows: repeat(auto, 10vh);
+
   gap: 0.2rem;
   user-select: none;
 }
 .weekdays {
   grid-template-rows: repeat(1, 3vh);
+  margin-bottom: 0.2rem;
 }
 .weekday {
   border-radius: 0.5vh;
@@ -220,8 +229,11 @@ form {
 
 .workspace {
   display: grid;
+  width: auto;
   grid-template-columns: auto-fill;
   gap: 1vh;
+  flex: auto;
+  height: 100%;
 }
 .iDetails {
   resize: vertical;
@@ -231,6 +243,8 @@ form {
   overflow: hidden;
   background: var(--cp-White);
   padding: 0.5vh;
+  height: auto;
+  width: auto;
 }
 .infoTask {
   color: var(--cp-dGrey);
