@@ -90,7 +90,6 @@ export function createYearData(yearNumber) {
     }
     yearObject.months.push(month);
     let PaddingDaysAfter = new Date(yearNumber, i + 1, 0).getDay();
-    console.log(i + "|" + PaddingDaysAfter + "-" + yearNumber);
     for (let k = 0; k < getPaddingAfter(PaddingDaysAfter); k++) {
       month.push(null);
     }

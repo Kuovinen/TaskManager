@@ -1,7 +1,6 @@
 import "./App.css";
 import { useState, useEffect, useRef } from "react";
 import Month from "./components/Month.js";
-import TaskDataDisplay from "./components/TaskDataDisplay.js";
 import Input from "./components/Input.js";
 import SelectedDay from "./components/SelectedDay.js";
 import Toggle from "./components/Toggle.js";
@@ -19,24 +18,23 @@ function App() {
   const [year, setYear] = useState(date.getFullYear());
   const [taskData, setTaskData] = useState({});
   const [selectedDay, setSelectedDay] = useState({
-    day: null,
-    month: null,
-    tasks: [{ title: null, time: null, details: null }],
+    day: date.getDate(),
+    month: date.getMonth(),
+    tasks: [{ title: null, details: null }],
   });
   const [taskList, setTaskList] = useState(
     JSON.parse(localStorage.getItem("tasks"))
   );
-  const [yearStyle, setYearStyle] = useState({ color: "var(--cp-White)" });
-
   const initialRender = useRef(true);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(taskList));
   }, [taskList]);
+
   return (
     <div className="App">
       <div className="timetable">
-        <Toggle setYearStyle={setYearStyle} yearStyle={yearStyle} />
+        <Toggle />
         <Month
           date={date}
           selectedDay={selectedDay}
@@ -44,7 +42,6 @@ function App() {
           taskData={taskData}
           setTaskData={setTaskData}
           taskList={taskList}
-          yearStyle={yearStyle}
           year={year}
           setYear={setYear}
           initialRender={initialRender}
@@ -52,16 +49,15 @@ function App() {
       </div>
 
       <div className="workspace">
-        <SelectedDay setTaskData={setTaskData} data={selectedDay} />
-        <TaskDataDisplay
-          taskData={{ ...taskData }}
-          taskList={taskList}
+        <SelectedDay
+          setTaskData={setTaskData}
           setSelectedDay={setSelectedDay}
-          day={selectedDay.day}
-          month={selectedDay.month}
-          year={year}
           setTaskList={setTaskList}
+          data={selectedDay}
+          taskList={taskList}
+          year={year}
         />
+
         <Input
           setTaskList={setTaskList}
           taskList={taskList}

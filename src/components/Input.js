@@ -7,12 +7,7 @@ export default function Input(props) {
     props.setTaskList(
       produce((draft) => {
         //if there is at least SOME data to save and a day is selected
-        if (
-          (event.target[0].value ||
-            event.target[1].value ||
-            event.target[2].value) &&
-          props.day
-        ) {
+        if (event.target[0].value && props.day) {
           //decide if the day already has tasks assigned to it
           //if so - spread them out , add a new one and assign all to the value
           //if not, simply assign the new one to the value
@@ -21,15 +16,13 @@ export default function Input(props) {
                 ...draft[props.year][props.month][props.day],
                 {
                   title: event.target[0].value,
-                  time: event.target[1].value,
-                  details: event.target[2].value,
+                  details: event.target[1].value,
                 },
               ]
             : [
                 {
                   title: event.target[0].value,
-                  time: event.target[1].value,
-                  details: event.target[2].value,
+                  details: event.target[1].value,
                 },
               ];
           //update the month data by spreading it and adding content of the
@@ -50,10 +43,10 @@ export default function Input(props) {
           saveData(event);
         }}
       >
-        <input className="iInput" placeholder="TITLE"></input>
-        <input className="iInput" type="time"></input>
-        <textarea className="iDetails" placeholder="DETAILS"></textarea>
-        <input className="submitButton" type="submit" value="SAVE"></input>
+        <input className="iInput" placeholder="Title"></input>
+        <textarea className="iDetails" placeholder="Details:"></textarea>
+        <input className="newButton" value="NEW"></input>
+        <input className="addButton" type="submit" value="ADD"></input>
       </form>
     </div>
   );

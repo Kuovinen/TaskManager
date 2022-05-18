@@ -1,15 +1,12 @@
 import Day from "./Day.js";
 import Weekday from "./Weekday.js";
 import { useEffect, useState, useRef } from "react";
-import getMonthString, {
-  createYearData,
-  decideWeekdayTxt,
-} from "./functions.js";
+import getMonthString, { createYearData } from "./functions.js";
 //components that produces the main month element
 export default function Month(props) {
   const initialRender = useRef(false);
   const [yearObject, setYearObject] = useState(createYearData(props.year));
-  const weekdays = decideWeekdayTxt();
+
   //Create array fillied with day components
   function constructMonth(number) {
     let days = yearObject.months[number].map((element, index) => {
@@ -31,6 +28,7 @@ export default function Month(props) {
         <Day
           key={index + number}
           day={element === null ? null : element.date}
+          suffix={element === null && "opacity50"}
           month={number}
           year={props.year}
           weekend={weekend}
@@ -56,7 +54,7 @@ export default function Month(props) {
     props.setSelectedDay({
       day: null,
       month: null,
-      tasks: [{ title: null, time: null, details: null }],
+      tasks: [{ title: null, details: null }],
     });
   }
   //set displayed mongth to the next one
@@ -70,7 +68,7 @@ export default function Month(props) {
     props.setSelectedDay({
       day: null,
       month: null,
-      tasks: [{ title: null, time: null, details: null }],
+      tasks: [{ title: null, details: null }],
     });
   }
   //STATES
@@ -112,18 +110,26 @@ export default function Month(props) {
   return (
     <section className="main">
       <div className="buttons">
-        <button className="chngM" onClick={prevMonth} style={props.yearStyle}>
+        <button
+          className="chngM"
+          onClick={prevMonth}
+          style={{ color: "var(--cp-Text)" }}
+        >
           {"<<"}
         </button>{" "}
         <div className="year" style={props.yearStyle}>
           {monthTitle} {props.year}
         </div>
-        <button className="chngM" onClick={nextMonth} style={props.yearStyle}>
+        <button
+          className="chngM"
+          onClick={nextMonth}
+          style={{ color: "var(--cp-Text)" }}
+        >
           {">>"}
         </button>
       </div>
       <div className="weekdays">
-        {weekdays.map((element, index) => (
+        {["M", "T", "W", "T", "F", "S", "S"].map((element, index) => (
           <Weekday key={element + index} day={element} />
         ))}
       </div>

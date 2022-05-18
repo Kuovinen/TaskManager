@@ -3,10 +3,10 @@ import Task from "./CTask.js";
 export default function Day(props) {
   let tasks = [];
   let border = props.current ? "0.2rem solid red" : "none";
-  let dateStyle = props.weekend ? { color: "white" } : null;
+  let dateStyle = props.weekend ? { color: "var(--cp-Text)" } : null;
   //assign background color based on if the day is a weekend
   let dayStyle = props.weekend
-    ? { background: "var(--cp-lGrey)", border: border }
+    ? { background: "var(--cp-Accent)", border: border }
     : { border: border };
   //update background color based on if the day has been selected
   dayStyle =
@@ -25,7 +25,6 @@ export default function Day(props) {
         <Task
           key={index}
           title={element.title}
-          time={element.time}
           details={element.details}
           setTaskData={props.setTaskData}
         />
@@ -52,12 +51,12 @@ export default function Day(props) {
       props.setSelectedDay({
         day: props.day,
         month: props.month,
-        tasks: [{ title: null, time: null, details: null }],
+        tasks: [{ title: null, details: null }],
       });
     }
   }
   return (
-    <div className="day" onClick={assign} style={dayStyle}>
+    <div className={"day " + props.suffix} onClick={assign} style={dayStyle}>
       <div className="date" style={props.day === null ? null : dateStyle}>
         {props.day}
       </div>
