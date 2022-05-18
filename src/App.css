@@ -1,12 +1,11 @@
 :root {
-  --cp-Main: #383838;
+  --cp-Main: #3c3c3c;
   --cp-Accent: #543753;
-  --cp-Accent25: rgb(158, 116, 157, 0.25);
-  --cp-dGrey: rgb(92, 59, 93);
-  --cp-Blue: rgb(134, 186, 243);
+  --cp-Blue: #325073;
   --cp-Background: #1b1b1b;
   --cp-Text: #a9a9a9;
-  --cp-Text2: #8b628c;
+  --cp-Text2: #9f70a0;
+  --cp-Text3: #a9a9a9;
 }
 body {
   background-color: var(--cp-Background);
@@ -45,7 +44,7 @@ body {
   width: 3vh;
   left: 0.5vh;
   bottom: 0.5vh;
-  background-color: var(--cp-Main);
+  background-color: var(--cp-Text);
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 50%;
@@ -88,7 +87,7 @@ input:checked + .slider {
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  color: var(--cp-Text);
+  color: var(--cp-Text3);
   font-size: 0.75rem;
 }
 .day {
@@ -161,6 +160,11 @@ form {
   min-height: 5rem;
   background: var(--cp-Main);
 }
+.iInput:focus,
+.iDetails:focus {
+  outline: none;
+  background: var(--cp-Background);
+}
 .iInput,
 .iDetails {
   border: none;
@@ -168,6 +172,11 @@ form {
   color: var(--cp-Text);
   resize: none;
   margin: 0 0.5rem;
+  border-radius: 0.2rem;
+}
+.iInput {
+  margin-top: 0.2rem;
+  color: var(--cp-Text2);
 }
 .iDetails {
   margin-bottom: 1rem;
@@ -187,7 +196,7 @@ form {
   padding: 0.25rem;
   border-radius: 0.5rem;
   width: 5rem;
-  color: var(--cp-Text);
+  color: var(--cp-Text3);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -266,10 +275,7 @@ form {
   width: 100%;
   justify-content: center;
   align-items: center;
-  background-color: var(--cp-Text);
-}
-.cTask:hover {
-  background: white;
+  background-color: var(--cp-Background);
 }
 
 .workspace {
@@ -318,7 +324,7 @@ form {
 }
 
 .infoTask {
-  color: var(--cp-Text);
+  color: var(--cp-Text3);
   background: var(--cp-Accent);
   font-size: 0.6rem;
   width: fit-content;
@@ -369,4 +375,7 @@ form {
 }
 .deleteTask:hover {
   transform: scale(0.9);
+}
+.taskText {
+  font-size: 0.75rem;
 }

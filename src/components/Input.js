@@ -45,7 +45,6 @@ export default function Input(props) {
       >
         <input className="iInput" placeholder="Title"></input>
         <textarea className="iDetails" placeholder="Details:"></textarea>
-        <input className="newButton" value="NEW"></input>
         <input className="addButton" type="submit" value="ADD"></input>
       </form>
     </div>

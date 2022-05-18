@@ -2,8 +2,8 @@ import Task from "./CTask.js";
 //Component used to create day elements in the month section of the page
 export default function Day(props) {
   let tasks = [];
-  let border = props.current ? "0.2rem solid red" : "none";
-  let dateStyle = props.weekend ? { color: "var(--cp-Text)" } : null;
+  let border = props.current ? "0.2rem solid var(--cp-Text)" : "none";
+  let dateStyle = props.weekend ? { color: "var(--cp-Text3)" } : null;
   //assign background color based on if the day is a weekend
   let dayStyle = props.weekend
     ? { background: "var(--cp-Accent)", border: border }
