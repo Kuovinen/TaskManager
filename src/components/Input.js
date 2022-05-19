@@ -113,7 +113,7 @@ export default function Input(props) {
           onInput={typeDets}
         ></textarea>
         <button className="clearButton" type="button" onClick={clear}>
-          Clear
+          New task
         </button>
         <input className="saveButton" type="submit" value="Save"></input>
       </form>
