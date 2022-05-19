@@ -4,26 +4,24 @@ import React from "react";
 export default function Input(props) {
   function saveData(event) {
     event.preventDefault();
-    console.log(`initial ID value is: ${props.taskData.id}`);
     props.setTaskList(
       produce((draft) => {
         //if there is at least SOME data to save
-        if (props.taskData.title != "") {
+        if (props.taskData.title !== "") {
           //decide if the day already has tasks assigned to it
           //if so - spread them out , add a new one and assign all to the value
           //if not, simply assign the new one to the value
           if (props.taskData.id === 0) {
             const id = Date.now();
-            console.log(`Triggered 0 id condition, value is: ${id}`);
             const newDayContent = draft[props.year][props.month][props.day]
               ? [
-                  ...draft[props.year][props.month][props.day],
                   {
                     id: id,
                     finished: false,
                     title: props.taskData.title,
                     details: props.taskData.details,
                   },
+                  ...draft[props.year][props.month][props.day],
                 ]
               : [
                   {
@@ -39,13 +37,6 @@ export default function Input(props) {
               ...draft[props.year][props.month],
               [props.day]: newDayContent,
             };
-            //reset inputfield
-            props.setTaskData({
-              id: 0,
-              finished: false,
-              title: "",
-              details: "",
-            });
           }
           //else can only be true if a tasklist has something in it
           //so we replace that something with a new value using the id
@@ -53,16 +44,16 @@ export default function Input(props) {
             const currentTaskList =
               props.taskList[props.year][props.month][props.day];
             const purgedTaskList = currentTaskList.filter(
-              (element) => element.id != props.taskData.id
+              (element) => element.id !== props.taskData.id
             );
             const newDayContent = [
-              ...purgedTaskList,
               {
                 id: props.taskData.id,
                 finished: false,
                 title: props.taskData.title,
                 details: props.taskData.details,
               },
+              ...purgedTaskList,
             ];
             //update the month data by spreading it and adding content of the
             //set up day data
@@ -70,18 +61,20 @@ export default function Input(props) {
               ...draft[props.year][props.month],
               [props.day]: newDayContent,
             };
-            //reset inputfield
-            props.setTaskData({
-              id: 0,
-              finished: false,
-              title: "",
-              details: "",
-            });
           }
+          //reset inputfield
+          props.setTaskData({
+            id: 0,
+            finished: false,
+            title: "",
+            details: "",
+          });
         }
       })
     );
   }
+
+  //clear input field
   function clear() {
     props.setTaskData({
       id: 0,

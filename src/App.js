@@ -22,20 +22,32 @@ function App() {
     title: "",
     details: "",
   });
-  const [selectedDay, setSelectedDay] = useState({
-    day: date.getDate(),
-    month: date.getMonth(),
-    tasks: [{ id: 0, finished: false, title: null, details: null }],
-  });
   const [taskList, setTaskList] = useState(
     JSON.parse(localStorage.getItem("tasks"))
   );
-  const initialRender = useRef(true);
+  const [selectedDay, setSelectedDay] = useState({
+    day: date.getDate(),
+    month: date.getMonth(),
+    tasks: taskList[year][date.getMonth()][date.getDate()],
+  });
 
+  const initialRender = useRef(true);
+  //update both selected day info and local storage if changed taskList
   useEffect(() => {
+    setSelectedDay((data) => {
+      console.log(data);
+      return {
+        day: data.day,
+        month: data.month,
+        tasks: taskList[year][date.getMonth()][date.getDate()],
+      };
+    });
     localStorage.setItem("tasks", JSON.stringify(taskList));
   }, [taskList]);
 
+  function rerender() {
+    console.log(selectedDay);
+  }
   return (
     <div className="App">
       <div className="timetable">
@@ -52,7 +64,6 @@ function App() {
           initialRender={initialRender}
         />
       </div>
-
       <div className="workspace">
         <SelectedDay
           setTaskData={setTaskData}
@@ -63,6 +74,7 @@ function App() {
           year={year}
         />
         <Input
+          setSelectedDay={setSelectedDay}
           taskList={taskList}
           setTaskList={setTaskList}
           taskData={taskData}
@@ -73,6 +85,7 @@ function App() {
           initialRender={initialRender}
         />
       </div>
+      <button onClick={rerender}>OO</button>
     </div>
   );
 }

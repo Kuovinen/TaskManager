@@ -1,5 +1,4 @@
 import Day from "./Day.js";
-import Weekday from "./Weekday.js";
 import { useEffect, useState, useRef } from "react";
 import getMonthString, { createYearData } from "./functions.js";
 //components that produces the main month element
@@ -130,7 +129,9 @@ export default function Month(props) {
       </div>
       <div className="weekdays">
         {["M", "T", "W", "T", "F", "S", "S"].map((element, index) => (
-          <Weekday key={element + index} day={element} />
+          <div key={element + index} className="weekday">
+            {element}
+          </div>
         ))}
       </div>
       <div className="month">{displayedMonth}</div>

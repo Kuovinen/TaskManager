@@ -14,7 +14,7 @@ export default function SelectedDay(props) {
           setSelectedDay={props.setSelectedDay}
           setTaskList={props.setTaskList}
           taskList={props.taskList}
-          key={index}
+          key={index + "InfoTask"}
           id={element.id}
           finished={element.finished}
           title={element.title}
