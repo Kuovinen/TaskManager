@@ -5,20 +5,22 @@ import produce from "immer";
 export default function InfoTask(props) {
   function deleteTask() {
     let target = {
+      id: props.id,
+      finished: props.finished,
       title: props.title,
       details: props.details,
     };
     console.log(target);
     //change to string for future comparison.
     //Because objects are need to be the same ref to be equal
-    target = JSON.stringify(target);
+    target = JSON.stringify(target.id);
     //selected day
     let inspectedDay = props.taskList[props.year][props.month][props.day];
     //create updated day Data, by excluding the component that has the same
     //value as the one that's selected.
     console.log(inspectedDay);
     let updatedDay = inspectedDay.filter(
-      (element, index) => target !== JSON.stringify(inspectedDay[index])
+      (element, index) => target !== JSON.stringify(inspectedDay[index].id)
     );
     console.log(updatedDay);
     //Update the selected Day window at the bottom, removing the deleted task
@@ -36,16 +38,17 @@ export default function InfoTask(props) {
   }
   //used to display task data in the lower sections middle element
   function showData() {
+    console.log("SHOW");
     props.setTaskData({
+      id: props.id,
+      finished: props.finished,
       title: props.title,
       details: props.details,
     });
   }
   return (
-    <div className="taskItem">
-      <div className="infoTask" onClick={showData}>
-        {props.title}
-      </div>
+    <div className="taskItem" onClick={showData}>
+      <div className="infoTask">{props.title}</div>
       <div className="taskText">{props.details}</div>
       <button className="deleteTask" onClick={deleteTask}>
         <img src={bin} alt="deleteButton" className="binIcon" />

@@ -45,7 +45,6 @@ export default function getMonthString(number) {
 }
 //returns total number of days in current years month
 export function getTotalMonthDays(number, year) {
-  let date = new Date();
   let data = new Date(year, number + 1, 0).getDate();
   return data;
 }

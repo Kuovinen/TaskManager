@@ -54,7 +54,7 @@ export default function Month(props) {
     props.setSelectedDay({
       day: null,
       month: null,
-      tasks: [{ title: null, details: null }],
+      tasks: [{ id: 0, finished: false, title: null, details: null }],
     });
   }
   //set displayed mongth to the next one
@@ -68,7 +68,7 @@ export default function Month(props) {
     props.setSelectedDay({
       day: null,
       month: null,
-      tasks: [{ title: null, details: null }],
+      tasks: [{ id: 0, finished: false, title: null, details: null }],
     });
   }
   //STATES

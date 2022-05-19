@@ -187,7 +187,7 @@ form {
 .iDetails::placeholder {
   color: var(--cp-Text);
 }
-.newButton,
+.editButton,
 .addButton {
   background-color: var(--cp-Accent);
   border: none;
@@ -207,10 +207,10 @@ form {
 .addButton {
   right: 1rem;
 }
-.newButton {
+.editButton {
   left: 1rem;
 }
-.newButton:hover,
+.editButton:hover,
 .addButton:hover {
   transform: scale(0.9);
 }
@@ -334,21 +334,25 @@ form {
   position: absolute;
   top: -0.25rem;
 }
-.infoTask:hover {
-  background: var(--cp-Accent25);
-}
+
 .taskItem {
   position: relative;
   background: var(--cp-Background);
   border-radius: 0.25rem;
   margin-bottom: 0.5rem;
-  margin-left: 0.5rem;
+  margin-left: 0.7rem;
+  margin-right: 0.2rem;
   padding-top: 0.75rem;
   padding-left: 0.5rem;
   font-size: 0.5rem;
   color: var(--cp-Text2);
+
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
+}
+.taskItem:hover {
+  filter: brightness(0.9);
 }
 .infoDate {
   color: var(--cp-Text);
@@ -362,6 +366,8 @@ form {
 }
 .binIcon {
   height: 1rem;
+  position: relative;
+  bottom: 0.3rem;
   filter: invert(46%) sepia(14%) saturate(1142%) hue-rotate(250deg)
     brightness(88%) contrast(84%);
 }

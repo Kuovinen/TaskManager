@@ -20,7 +20,7 @@ function App() {
   const [selectedDay, setSelectedDay] = useState({
     day: date.getDate(),
     month: date.getMonth(),
-    tasks: [{ title: null, details: null }],
+    tasks: [{ id: 0, finished: false, title: null, details: null }],
   });
   const [taskList, setTaskList] = useState(
     JSON.parse(localStorage.getItem("tasks"))
