@@ -39,15 +39,12 @@ function App() {
       return {
         day: data.day,
         month: data.month,
-        tasks: taskList[year][date.getMonth()][date.getDate()],
+        tasks: taskList[year][data.month][data.day],
       };
     });
     localStorage.setItem("tasks", JSON.stringify(taskList));
   }, [taskList]);
 
-  function rerender() {
-    console.log(selectedDay);
-  }
   return (
     <div className="App">
       <div className="timetable">

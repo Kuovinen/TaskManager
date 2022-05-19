@@ -5,6 +5,7 @@ import getMonthString from "./functions.js";
 export default function SelectedDay(props) {
   function makeInfoTasks() {
     if (
+      props.data.tasks &&
       props.data.tasks[0] &&
       (props.data.tasks[0].title || props.data.tasks[0].details)
     ) {
