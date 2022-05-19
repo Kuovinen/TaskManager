@@ -16,7 +16,12 @@ function App() {
     console.log("Generated local storage.");
   }
   const [year, setYear] = useState(date.getFullYear());
-  const [taskData, setTaskData] = useState({});
+  const [taskData, setTaskData] = useState({
+    id: 0,
+    finished: false,
+    title: "",
+    details: "",
+  });
   const [selectedDay, setSelectedDay] = useState({
     day: date.getDate(),
     month: date.getMonth(),
@@ -51,16 +56,17 @@ function App() {
       <div className="workspace">
         <SelectedDay
           setTaskData={setTaskData}
-          setSelectedDay={setSelectedDay}
-          setTaskList={setTaskList}
           data={selectedDay}
+          setSelectedDay={setSelectedDay}
           taskList={taskList}
+          setTaskList={setTaskList}
           year={year}
         />
-
         <Input
-          setTaskList={setTaskList}
           taskList={taskList}
+          setTaskList={setTaskList}
+          taskData={taskData}
+          setTaskData={setTaskData}
           year={year}
           month={selectedDay.month}
           day={selectedDay.day}

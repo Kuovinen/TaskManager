@@ -4,32 +4,33 @@ import React from "react";
 export default function Input(props) {
   function saveData(event) {
     event.preventDefault();
-    const buttonPressed = event.nativeEvent.submitter.className;
-    console.log(buttonPressed + typeof buttonPressed);
-    if (buttonPressed === "addButton") {
-      props.setTaskList(
-        produce((draft) => {
-          //if there is at least SOME data to save and a day is selected
-          if (event.target[0].value && props.day) {
-            //decide if the day already has tasks assigned to it
-            //if so - spread them out , add a new one and assign all to the value
-            //if not, simply assign the new one to the value
-            let newDayContent = draft[props.year][props.month][props.day]
+    console.log(`initial ID value is: ${props.taskData.id}`);
+    props.setTaskList(
+      produce((draft) => {
+        //if there is at least SOME data to save
+        if (props.taskData.title != "") {
+          //decide if the day already has tasks assigned to it
+          //if so - spread them out , add a new one and assign all to the value
+          //if not, simply assign the new one to the value
+          if (props.taskData.id === 0) {
+            const id = Date.now();
+            console.log(`Triggered 0 id condition, value is: ${id}`);
+            const newDayContent = draft[props.year][props.month][props.day]
               ? [
                   ...draft[props.year][props.month][props.day],
                   {
-                    id: Date.now(),
+                    id: id,
                     finished: false,
-                    title: event.target[0].value,
-                    details: event.target[1].value,
+                    title: props.taskData.title,
+                    details: props.taskData.details,
                   },
                 ]
               : [
                   {
-                    id: Date.now(),
+                    id: id,
                     finished: false,
-                    title: event.target[0].value,
-                    details: event.target[1].value,
+                    title: props.taskData.title,
+                    details: props.taskData.details,
                   },
                 ];
             //update the month data by spreading it and adding content of the
@@ -38,12 +39,67 @@ export default function Input(props) {
               ...draft[props.year][props.month],
               [props.day]: newDayContent,
             };
+            //reset inputfield
+            props.setTaskData({
+              id: 0,
+              finished: false,
+              title: "",
+              details: "",
+            });
           }
-        })
-      );
-    }
+          //else can only be true if a tasklist has something in it
+          //so we replace that something with a new value using the id
+          else {
+            const currentTaskList =
+              props.taskList[props.year][props.month][props.day];
+            const purgedTaskList = currentTaskList.filter(
+              (element) => element.id != props.taskData.id
+            );
+            const newDayContent = [
+              ...purgedTaskList,
+              {
+                id: props.taskData.id,
+                finished: false,
+                title: props.taskData.title,
+                details: props.taskData.details,
+              },
+            ];
+            //update the month data by spreading it and adding content of the
+            //set up day data
+            draft[props.year][props.month] = {
+              ...draft[props.year][props.month],
+              [props.day]: newDayContent,
+            };
+            //reset inputfield
+            props.setTaskData({
+              id: 0,
+              finished: false,
+              title: "",
+              details: "",
+            });
+          }
+        }
+      })
+    );
   }
-
+  function clear() {
+    props.setTaskData({
+      id: 0,
+      finished: false,
+      title: "",
+      details: "",
+    });
+  }
+  function typeTitle(event) {
+    props.setTaskData((data) => {
+      return { ...data, title: event.target.value };
+    });
+  }
+  function typeDets(event) {
+    props.setTaskData((data) => {
+      return { ...data, details: event.target.value };
+    });
+  }
   return (
     <div className="inputForm">
       <form
@@ -51,10 +107,22 @@ export default function Input(props) {
           saveData(event);
         }}
       >
-        <input className="iInput" placeholder="Title"></input>
-        <textarea className="iDetails" placeholder="Details:"></textarea>
-        <input className="editButton" type="submit" value="EDIT"></input>
-        <input className="addButton" type="submit" value="ADD"></input>
+        <input
+          className="iInput"
+          placeholder="Title"
+          value={props.taskData.title}
+          onInput={typeTitle}
+        ></input>
+        <textarea
+          className="iDetails"
+          placeholder="Details:"
+          value={props.taskData.details}
+          onInput={typeDets}
+        ></textarea>
+        <button className="clearButton" type="button" onClick={clear}>
+          Clear
+        </button>
+        <input className="saveButton" type="submit" value="Save"></input>
       </form>
     </div>
   );

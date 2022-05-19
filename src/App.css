@@ -187,8 +187,8 @@ form {
 .iDetails::placeholder {
   color: var(--cp-Text);
 }
-.editButton,
-.addButton {
+.clearButton,
+.saveButton {
   background-color: var(--cp-Accent);
   border: none;
   position: absolute;
@@ -204,13 +204,13 @@ form {
   font-weight: 700;
   text-align: center;
 }
-.addButton {
+.saveButton {
   right: 1rem;
 }
-.editButton {
+.clearButton {
   left: 1rem;
 }
-.editButton:hover,
+.clearButton:hover,
 .addButton:hover {
   transform: scale(0.9);
 }

@@ -10,7 +10,6 @@ export default function InfoTask(props) {
       title: props.title,
       details: props.details,
     };
-    console.log(target);
     //change to string for future comparison.
     //Because objects are need to be the same ref to be equal
     target = JSON.stringify(target.id);
@@ -18,11 +17,9 @@ export default function InfoTask(props) {
     let inspectedDay = props.taskList[props.year][props.month][props.day];
     //create updated day Data, by excluding the component that has the same
     //value as the one that's selected.
-    console.log(inspectedDay);
     let updatedDay = inspectedDay.filter(
       (element, index) => target !== JSON.stringify(inspectedDay[index].id)
     );
-    console.log(updatedDay);
     //Update the selected Day window at the bottom, removing the deleted task
     props.setSelectedDay(
       produce((draft) => {
@@ -37,8 +34,7 @@ export default function InfoTask(props) {
     );
   }
   //used to display task data in the lower sections middle element
-  function showData() {
-    console.log("SHOW");
+  function setData() {
     props.setTaskData({
       id: props.id,
       finished: props.finished,
@@ -47,7 +43,7 @@ export default function InfoTask(props) {
     });
   }
   return (
-    <div className="taskItem" onClick={showData}>
+    <div className="taskItem" onClick={setData}>
       <div className="infoTask">{props.title}</div>
       <div className="taskText">{props.details}</div>
       <button className="deleteTask" onClick={deleteTask}>

@@ -120,21 +120,3 @@ export function initTaskList() {
   }
   return initTL;
 }
-
-export function decideWeekdayTxt() {
-  if (window.innerWidth < 300) {
-    return ["M", "T", "W", "T", "F", "S", "S"];
-  } else if (window.innerWidth >= 300 && window.innerWidth <= 700) {
-    return ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
-  } else if (window.innerWidth > 700) {
-    return [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ];
-  }
-}

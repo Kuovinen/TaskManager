@@ -1,4 +1,3 @@
-import Task from "./CTask.js";
 //Component used to create day elements in the month section of the page
 export default function Day(props) {
   let tasks = [];
@@ -21,14 +20,7 @@ export default function Day(props) {
     props.taskList[props.year][props.month][props.day]
   ) {
     tasks = props.taskList[props.year][props.month][props.day].map(
-      (element, index) => (
-        <Task
-          key={index}
-          title={element.title}
-          details={element.details}
-          setTaskData={props.setTaskData}
-        />
-      )
+      (element, index) => <div key={index} className="cTask"></div>
     );
   }
   // Fills out the first info box of the lower section of the page.
