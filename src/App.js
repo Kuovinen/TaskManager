@@ -85,7 +85,6 @@ function App() {
           initialRender={initialRender}
         />
       </div>
-      <button onClick={rerender}>OO</button>
     </div>
   );
 }
