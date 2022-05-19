@@ -97,7 +97,7 @@ input:checked + .slider {
   background: var(--cp-Main);
 }
 .day:hover {
-  filter: brightness(1.3);
+  transform: scale(0.95);
 }
 .opacity50 {
   opacity: 0.5;
@@ -211,7 +211,7 @@ form {
   left: 1rem;
 }
 .clearButton:hover,
-.addButton:hover {
+.saveButton:hover {
   transform: scale(0.9);
 }
 .selectedTask {
@@ -352,7 +352,7 @@ form {
   justify-content: space-between;
 }
 .taskItem:hover {
-  filter: brightness(0.9);
+  outline: 0.01rem solid var(--cp-Text);
 }
 .infoDate {
   color: var(--cp-Text);
