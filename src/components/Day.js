@@ -43,7 +43,7 @@ export default function Day(props) {
       props.setSelectedDay({
         day: props.day,
         month: props.month,
-        tasks: [{ title: null, details: null }],
+        tasks: [{ id: 0, finished: false, title: null, details: null }],
       });
     }
   }

@@ -13,7 +13,7 @@ export default function Input(props) {
           //if not, simply assign the new one to the value
           if (props.taskData.id === 0) {
             const id = Date.now();
-            const newDayContent = draft[props.year][props.month][props.day]
+            const currentTaskList = draft[props.year][props.month][props.day]
               ? [
                   {
                     id: id,
@@ -35,17 +35,19 @@ export default function Input(props) {
             //set up day data
             draft[props.year][props.month] = {
               ...draft[props.year][props.month],
-              [props.day]: newDayContent,
+              [props.day]: currentTaskList,
             };
           }
           //else can only be true if a tasklist has something in it
           //so we replace that something with a new value using the id
           else {
-            const currentTaskList =
-              props.taskList[props.year][props.month][props.day];
-            const purgedTaskList = currentTaskList.filter(
-              (element) => element.id !== props.taskData.id
-            );
+            const currentTaskList = draft[props.year][props.month][props.day];
+            const purgedTaskList =
+              currentTaskList === undefined
+                ? []
+                : currentTaskList.filter(
+                    (element) => element.id !== props.taskData.id
+                  );
             const newDayContent = [
               {
                 id: props.taskData.id,
